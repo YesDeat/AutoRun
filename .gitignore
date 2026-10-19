@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# 运行时产物（含会话/个人数据，切勿提交）
+autorun_session.json   # CLI 授权后保存的会话（token）
+routes_*.json          # 「爬取历史路径」导出的轨迹
+30-logs/               # 本地 mock 抓包/运行日志
+*.log
+
+# 编辑器 / OS
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
+.DS_Store

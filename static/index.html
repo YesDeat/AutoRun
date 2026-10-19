@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AuToRun 工作台</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    #app { display: flex; height: 100vh; }
+    #map { flex: 1 1 60%; }
+    #panel { flex: 1 1 40%; max-width: 420px; padding: 16px; overflow-y: auto; background: #fafafa; border-left: 1px solid #ddd; }
+    h1 { font-size: 18px; margin: 0 0 8px; }
+    .row { margin: 8px 0; }
+    label { display: inline-block; width: 96px; font-size: 13px; color: #444; }
+    input, select { padding: 4px 6px; width: 180px; }
+    button { padding: 7px 14px; margin: 6px 6px 6px 0; border: 0; border-radius: 6px; background: #2d7ff9; color: #fff; cursor: pointer; }
+    button.sec { background: #888; }
+    .hint { font-size: 12px; color: #888; }
+    #steps { margin-top: 10px; font-size: 13px; }
+    .step { padding: 3px 0; border-bottom: 1px dashed #eee; }
+    .ok { color: #1a8a3c; } .fail { color: #c0341d; }
+    #metrics { font-size: 13px; background: #fff; padding: 8px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="map"></div>
+    <div id="panel">
+      <h1>AuToRun · 体适能/阳光跑工作台</h1>
+      <p class="hint">在地图上点击添加跑道拐点（至少 2 个），或点「生成示例跑道」。</p>
+      <div class="row"><button id="btnSample">生成示例跑道</button><button class="sec" id="btnClear">清空</button></div>
+      <div class="row"><label>目标公里</label><input id="km" type="number" value="2.0" step="0.1" /></div>
+      <div class="row"><label>配速(秒/公里)</label><input id="pace" type="number" value="330" /></div>
+      <div class="row"><label>跑步类型</label>
+        <select id="runType"><option value="1">晨跑</option><option value="2" selected>阳光跑</option><option value="3">自由跑</option></select>
+      </div>
+      <div class="row"><label>坐标口径</label>
+        <select id="crs"><option value="gcj02" selected>GCJ-02</option><option value="wgs84">WGS-84</option></select>
+      </div>
+      <div class="row"><label>人脸打卡</label>
+        <select id="faces"><option value="1" selected>开</option><option value="0">关</option></select>
+      </div>
+      <div class="row"><label>性别</label>
+        <select id="sex"><option value="male">男</option><option value="female">女</option></select>
+      </div>
+      <div class="row"><button id="btnGen">生成轨迹</button><button id="btnSubmit">提交</button></div>
+      <div id="metrics"></div>
+      <div id="steps"></div>
+    </div>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
